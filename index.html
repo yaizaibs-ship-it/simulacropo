@@ -1,4 +1,4 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="light dark">
 <title>Simulacro Artes Gráficas · 100 preguntas</title><style>
 :root{--bg:#f6f4ef;--card:#fff;--ink:#16181d;--mut:#6b7280;--line:#e4e1d8;--acc:#3b3bdb;--accs:#ececff;--ok:#0f9d58;--oks:#e7f6ee;--ko:#d93a4a;--kos:#fdeceb;--sh:0 1px 2px #0000000a,0 12px 32px #0000000d}
 @media(prefers-color-scheme:dark){:root{--bg:#0f1115;--card:#171a21;--ink:#eceef2;--mut:#9aa1ae;--line:#2a2e38;--acc:#8b8bff;--accs:#23254a;--ok:#3ddc84;--oks:#12281c;--ko:#ff6b78;--kos:#331a1e;--sh:none}}
@@ -6,7 +6,7 @@
 header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .top{max-width:760px;margin:auto;padding:12px 20px 10px;display:flex;align-items:center;justify-content:space-between;gap:14px}
 h1{font-size:15px;margin:0;font-weight:700;letter-spacing:-.01em}.muted{color:var(--mut);font-size:13px}
-.stats{display:flex;gap:8px;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}.pill{padding:4px 10px;border-radius:99px;background:var(--card);border:1px solid var(--line)}.pill.ok{color:var(--ok)}.pill.ko{color:var(--ko)}
+.stats{flex-wrap:wrap;justify-content:flex-end;display:flex;gap:8px;font-size:13px;font-weight:600;font-variant-numeric:tabular-nums}.pill{padding:4px 10px;border-radius:99px;background:var(--card);border:1px solid var(--line)}.pill.ok{color:var(--ok)}.pill.ko{color:var(--ko)}
 .progress{height:3px;background:var(--line)}.bar{height:100%;width:0;background:var(--acc);transition:width .35s}
 main{max-width:760px;margin:0 auto;padding:26px 20px 90px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px;box-shadow:var(--sh)}
@@ -38,16 +38,36 @@ dialog{width:min(560px,92vw);border:1px solid var(--line);border-radius:20px;bac
 dialog h2{margin:0 0 6px;font-size:20px}dialog pre{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:12.5px;line-height:1.5;overflow:auto;white-space:pre-wrap}
 .drop{display:block;border:2px dashed var(--line);border-radius:14px;padding:18px;text-align:center;cursor:pointer;font-weight:700;margin:14px 0}.drop:hover{border-color:var(--acc);color:var(--acc)}.drop input{display:none}
 #upMsg{font-size:14px;margin:8px 0;min-height:20px}#upMsg.ok{color:var(--ok)}#upMsg.ko{color:var(--ko)}.chk{display:flex;gap:8px;align-items:center;font-size:14px;margin:10px 0}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}header{top:env(safe-area-inset-top,0px)}.nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.nav .pill{cursor:pointer;font:inherit;font-size:13px;font-weight:700}
+select{width:100%;padding:11px;margin:4px 0 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
+.opt.sel.locked{opacity:1}#counter{font-variant-numeric:tabular-nums;white-space:pre}
+.rowb{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:14px}.rowb span{width:120px}.rowb b{width:42px;text-align:right}.tr{flex:1;height:9px;background:var(--line);border-radius:9px;overflow:hidden}.tr i{display:block;height:100%;background:var(--acc)}
+.evo{display:flex;gap:6px;align-items:flex-end;height:110px}.evo div{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;font-size:11px}.evo i{width:100%;background:var(--acc);border-radius:5px 5px 0 0}
+dialog#lsDlg{width:min(760px,96vw);max-height:90vh;overflow:auto}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.chip2{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:99px;padding:6px 12px;font:inherit;font-size:13px;font-weight:700;cursor:pointer}.chip2.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+#lsQ{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;margin-bottom:8px}
+.li{border-bottom:1px solid var(--line);padding:9px 0}.li summary{cursor:pointer;display:flex;gap:10px;font-size:15px}.lb{padding:10px 0 4px 30px;font-size:14px}.lb .ca{color:var(--ok);font-weight:700}.lb .btn{margin-top:10px;padding:8px 14px;font-size:13px}
 </style></head><body>
-<header><div class="top"><div><h1>Simulacro Artes Gráficas</h1><div class="muted" id="counter">Preparando…</div></div><div class="stats"><span class="pill ok" id="sOk">✓ 0</span><span class="pill ko" id="sKo">✗ 0</span><button class="pill" id="upBtn" type="button">⬆ Subir preguntas</button></div></div><div class="progress"><div class="bar" id="bar"></div></div></header>
-<main><section class="card" id="quiz"></section><section class="card result" id="result"></section></main>
+<header><div class="top"><div><h1>Simulacro Artes Gráficas</h1><div class="muted" id="counter">Preparando…</div></div><div class="stats"><span class="pill ok" id="sOk">✓ 0</span><span class="pill ko" id="sKo">✗ 0</span></div></div><div class="progress"><div class="bar" id="bar"></div></div></header>
+<main><nav class="nav"><button class="pill" id="cfgBtn" type="button">⚙ Nuevo examen</button><button class="pill" id="stBtn" type="button">📊 Progreso</button><button class="pill" id="lsBtn" type="button">📚 Listado</button><button class="pill" id="fxBtn" type="button">🔁 Fallos (0)</button><button class="pill" id="upBtn" type="button">⬆ Subir preguntas</button></nav><section class="card" id="quiz"></section><section class="card result" id="result"></section></main>
+<dialog id="cfgDlg"><h2>Nuevo examen</h2>
+<button class="btn primary" id="simGo" type="button" style="width:100%;margin:10px 0">🔥 SIMULACRO OPOSICIÓN</button>
+<div class="muted">100 preguntas · 90 min · todos los temas · dificultad alta · cada fallo resta 1/3 de acierto · resultados al final</div>
+<h3>O configura tu práctica</h3>
+<label class="muted">Temas</label><select id="cT"><option value="all">Todos los temas</option><option value="0">Temas 1–11 · Legislación</option><option value="1">Temas 12–16 · Historia</option><option value="2">Temas 17–23 · Tipografía</option><option value="3">Temas 24–30 · Ortotipografía</option><option value="4">Temas 31–36 · Producción</option><option value="5">Temas 37–40 · Color / Software</option><option value="weak">🎯 Solo mis temas flojos</option></select>
+<label class="muted">Dificultad</label><select id="cD"><option value="all">Todas</option><option value="0">Fácil</option><option value="1">Media</option><option value="2">Difícil</option><option value="3">Muy difícil 🔥</option></select>
+<div class="actions"><button class="btn primary" id="cfgGo" type="button">Empezar práctica</button><button class="btn secondary" id="cfgX" type="button">Cerrar</button></div></dialog>
+<dialog id="stDlg"><h2>📊 Tu progreso</h2><div id="stBody"></div><div class="actions"><button class="btn secondary" id="stX" type="button">Cerrar</button><button class="btn secondary" id="stR" type="button">Reiniciar estadísticas</button></div></dialog>
+<dialog id="lsDlg"><h2>📚 Listado de preguntas</h2><div id="lsBody"></div><div class="actions" style="position:sticky;bottom:-26px;background:var(--card);padding:10px 0"><button class="btn primary" id="lsGo" type="button">Examen con estas</button><button class="btn secondary" id="lsX" type="button">Cerrar</button></div></dialog>
 <dialog id="dlg"><h2>Subir más preguntas</h2><div class="muted">Archivo Word (.docx) o .txt. Cada pregunta debe ir numerada, con 3 opciones A, B y C:</div>
 <pre>1. Enunciado de la pregunta
 A) Opción A
 B) Opción B
 C) Opción C
 Respuesta: B
-Explicación: Breve explicación.</pre>
+Explicación: Breve explicación.
+Tema: 18        (opcional, 1–40)
+Dificultad: difícil   (opcional: fácil/media/difícil/muy)</pre>
 <label class="drop">📄 Elegir archivo .docx<input type="file" id="fileIn" accept=".docx,.txt" multiple></label>
 <div id="upMsg"></div><div class="muted" id="upCount"></div>
 <label class="chk"><input type="checkbox" id="onlyC"> Examen solo con mis preguntas subidas</label>
@@ -60,22 +80,51 @@ const TOTAL=100,L=['A','B','C'],$=id=>document.getElementById(id);
 let exam,i,score,answered,sel,hist;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function shuffle(a){a=a.slice();for(let k=a.length-1;k>0;k--){const j=Math.floor(Math.random()*(k+1));[a[k],a[j]]=[a[j],a[k]]}return a}
-function start(){
-  exam=shuffle(ONLY&&CUSTOM.length?CUSTOM:BANK.concat(CUSTOM)).slice(0,TOTAL).map(([q,o,a,e])=>{const idx=shuffle([0,1,2]);
-    return{q,e,opts:idx.map(k=>o[k]),ans:idx.indexOf(a),keepLast:/INCORRECTA|CORRECTA/.test(q)&&false}});
-  i=0;score=0;hist=[];$('result').style.display='none';$('sOk').textContent='✓ 0';$('sKo').textContent='✗ 0';$('quiz').style.display='block';render();scrollTo(0,0)}
+const lsGet=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))||d}catch(e){return d}},lsSet=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+let FAILS=lsGet('sag_fails',{}),FMODE=false;
+const nF=()=>Object.keys(FAILS).length,updF=()=>$('fxBtn').textContent='🔁 Fallos ('+nF()+')';
+const saveS=()=>lsSet('sag_state',{exam,hist,fm:FMODE,sim:SIM,dl:DL});
+const G=['Legislación','Historia','Tipografía','Ortotipografía','Producción','Color/Software'],DN=['Fácil','Media','Difícil','Muy difícil 🔥'];
+const KW=[/\bley\b|lpacap|39\/2015|plazo|recurso|alzada|administrativ|silencio|procedimiento|funcionari|constituc|estatuto|diputaci|\bbop\b|notificaci|publicaci[oó]n de los actos|sede electr|\bactos?\b/i,/gutenberg|siglo|incunable|imprenta|salterio|biblia|linotype|monotype|xilogr|maguncia|renacimiento|fust|schöffer|sinodal|aguilafuente|fotocomposici/i,/tipograf|kerning|tracking|interlinea|interlínea|serif|palo seco|garamond|helvetica|versalita|ligadura|cícero|pica\b|cuerpo|glifo|cifras|elzevir|viuda|huérfana|didot|capitular|blancos tipogr|altura de x|legibilidad|familia tipogr|sangr[ií]a|espacio entre|longitud de línea/i,/tilde|raya|guion|sigla|abreviatura|mayúscula|puntuaci|suspensivos|comillas|ortograf|hiato|diptongo|\bsolo\b|\bcoma\b|cursiva|negrita|dos puntos|punto final|tras un punto|acentuad|triptong|\brae\b|\bavl\b|numeral|supresi|corchete|cita\b/i,/offset|flexograf|huecograb|serigraf|papel|gramaje|sangrado|trama|lineatura|moir|registro|trapping|sobreimpres|overprint|\bctp\b|fotolito|plancha|tinta|encuadern|troquel|barniz|plegado|preflight|composici[oó]n/i,/color|cmyk|\brgb\b|pantone|perfil|\bicc\b|photoshop|illustrator|indesign|vectorial|vector|píxel|pixel|resoluci|\bppp\b|\bpdf|formato|capa|bitmap|grises|srgb|acrobat|jpeg|svg|panel|estilos? de|secciones|enfrentadas|herramienta|\bpng\b|compresi|aditiv|sustractiv|letra c\b/i],ORD=[0,1,3,2,4,5];
+const gOf=x=>x[4]!=null?x[4]:(()=>{for(const k of ORD)if(KW[k].test(x[0]))return k;const t=x[0]+' '+x[1].join(' ')+' '+(x[3]||'');for(const k of ORD)if(KW[k].test(t))return k;return 6})();
+const wd=t=>new Set(t.toLowerCase().replace(/[^a-záéíóúñü0-9 ]/g,' ').split(/\s+/).filter(w=>w.length>3));
+const jac=(a,b)=>{const A=wd(a),B=wd(b);let n=0;A.forEach(w=>B.has(w)&&n++);return n/Math.max(1,A.size+B.size-n)};
+const dsc=x=>{const o=x[1];return (jac(o[0],o[1])+jac(o[0],o[2])+jac(o[1],o[2]))*4/3*3+(/INCORRECTA|excepto|salvo|\bNO\b/.test(x[0])?1:0)+(x[0].length>110?.5:0)+o.join('').length/300};
+let THR=[0,0,0];const recomp=()=>{const a=BANK.concat(CUSTOM).map(dsc).sort((p,q)=>p-q),n=a.length;THR=[.25,.5,.75].map(f=>a[Math.floor(n*f)])};
+const dOf=x=>{if(x[5]!=null)return x[5];const v=dsc(x);return v<THR[0]?0:v<THR[1]?1:v<THR[2]?2:3};
+let QS=lsGet('sag_qs',{}),STATS=lsGet('sag_stats',{}),SIM=false,DL=0,TM=null;
+Object.keys(FAILS).forEach(k=>{if(!QS[k])QS[k]={s:'ko'}});
+const setQ=(k,o)=>{QS[k]=Object.assign(QS[k]||{},o);lsSet('sag_qs',QS)};
+const noteFail=(q,ok)=>{if(ok)delete FAILS[q.q];else FAILS[q.q]=[q.q,q.opts,q.ans,q.e];lsSet('sag_fails',FAILS);updF()};
+const tick=()=>{const r=Math.max(0,DL-Date.now());$('sOk').textContent='⏱ '+Math.floor(r/60000)+':'+String(Math.floor(r/1000)%60).padStart(2,'0');$('sKo').style.display='none';if(!r){clearInterval(TM);finish()}};
+function weakG(){const r=G.map((n,k)=>({k,t:(STATS[k]||[0,0])[1],p:(STATS[k]||[0,0])[0]/Math.max(1,(STATS[k]||[0,0])[1])})).filter(x=>x.t>=5).sort((a,b)=>a.p-b.p);const w=r.filter(x=>x.p<.75).slice(0,3);return(w.length?w:r.slice(0,2)).map(x=>x.k)}
+function buildPool(c){let p=c.pool||(c.fm?Object.values(FAILS):c.only&&CUSTOM.length?CUSTOM:BANK.concat(CUSTOM));
+ if(c.t==='weak'){const w=weakG();if(!w.length)return null;p=p.filter(x=>w.includes(gOf(x)))}else if(c.t!=='all')p=p.filter(x=>gOf(x)==+c.t);
+ if(c.d!=='all')p=p.filter(x=>dOf(x)==+c.d);
+ if(c.sim)return shuffle(p.filter(x=>dOf(x)>=2)).concat(shuffle(p.filter(x=>dOf(x)<2))).slice(0,TOTAL);
+ return shuffle(p)}
+function start(m,c){
+  c=Object.assign({t:'all',d:'all'},c||{});FMODE=m==='fails';c.fm=FMODE;
+  if(FMODE&&!nF()){alert('Aún no tienes fallos guardados.');FMODE=false;return}
+  const pool=buildPool(c);if(!pool||!pool.length){alert(pool?'No hay preguntas con ese filtro.':'Aún no hay datos para detectar tus temas flojos (mínimo 5 preguntas por tema). Haz algún examen primero.');return}
+  SIM=!!c.sim;clearInterval(TM);try{localStorage.removeItem('sag_state')}catch(e){}
+  exam=shuffle(pool).slice(0,TOTAL).map(x=>{const[q,o,a,e]=x,idx=shuffle([0,1,2]);return{q,e,opts:idx.map(k=>o[k]),ans:idx.indexOf(a),g:gOf(x),d:dOf(x),m:!!(QS[x[0]]||{}).m}});
+  i=0;score=0;hist=[];$('result').style.display='none';$('sOk').textContent='✓ 0';$('sKo').textContent='✗ 0';$('sKo').style.display='';$('quiz').style.display='block';
+  if(SIM){DL=Date.now()+exam.length*54000;tick();TM=setInterval(tick,1000)}
+  render();scrollTo(0,0)}
 function render(){
   answered=false;sel=null;const q=exam[i];
-  $('counter').textContent='Pregunta '+(i+1)+'/'+exam.length;$('bar').style.width=(i/exam.length*100)+'%';
-  $('quiz').innerHTML='<div class="meta"><span class="chip">Pregunta '+(i+1)+'</span><span class="muted">'+(exam.length-i-1)+' restantes</span></div><div class="q">'+esc(q.q)+'</div><div>'+
+  const pc=Math.round((i+1)/exam.length*100),k=Math.round(pc/10);$('counter').textContent='Pregunta '+(i+1)+' / '+exam.length+'  '+'█'.repeat(k)+'░'.repeat(10-k)+' '+pc+'%'+(SIM?' · SIMULACRO':'');$('bar').style.width=pc+'%';
+  $('quiz').innerHTML='<div class="meta"><span class="chip">'+(SIM?'Pregunta '+(i+1):(G[q.g]||'General')+' · '+DN[q.d])+'</span><span class="muted">'+(exam.length-i-1)+' restantes</span></div><div class="q">'+esc(q.q)+'</div><div>'+
    q.opts.map((x,j)=>'<div class="opt" data-j="'+j+'"><span class="letter">'+L[j]+'</span><span>'+esc(x)+'</span></div>').join('')+
-   '</div><div class="explain" id="ex"></div><div class="actions"><button class="btn primary" id="check" disabled>Comprobar</button><button class="btn secondary" id="next" disabled>'+(i===exam.length-1?'Ver resultado':'Siguiente →')+'</button><span class="hint">Teclas A·B·C · Intro</span></div>';
+   '</div><div class="explain" id="ex"></div><div class="actions"><button class="btn primary" id="check" disabled>'+(SIM?'Confirmar':'Comprobar')+'</button><button class="btn secondary" id="next" disabled>'+(i===exam.length-1?'Ver resultado':'Siguiente →')+'</button><button class="btn secondary" id="mk" type="button">'+(q.m?'⭐ Marcada':'☆ Revisar después')+'</button><span class="hint">Teclas A·B·C · Intro</span></div>';
   document.querySelectorAll('.opt').forEach(el=>el.onclick=()=>{if(answered)return;sel=+el.dataset.j;
     document.querySelectorAll('.opt').forEach(o=>o.classList.toggle('sel',o===el));$('check').disabled=false});
-  $('check').onclick=check;$('next').onclick=next}
+  $('check').onclick=check;$('next').onclick=next;$('mk').onclick=()=>{q.m=!q.m;setQ(q.q,{m:q.m});$('mk').textContent=q.m?'⭐ Marcada':'☆ Revisar después';saveS()}}
 function check(){
   if(answered||sel===null)return;answered=true;const q=exam[i],ok=sel===q.ans;if(ok)score++;
-  hist.push({q,c:sel,ok});
+  hist.push({q,c:sel,ok});const sg=STATS[q.g]||[0,0];STATS[q.g]=[sg[0]+(ok?1:0),sg[1]+1];lsSet('sag_stats',STATS);if(!SIM){noteFail(q,ok);setQ(q.q,{s:ok?'ok':'ko'})}saveS();
+  if(SIM){document.querySelectorAll('.opt').forEach(el=>el.classList.add('locked'));$('ex').className='explain show';$('ex').textContent='Respuesta registrada. Verás los resultados al final.';$('check').disabled=true;$('next').disabled=false;$('next').className='btn primary';$('check').className='btn secondary';return}
   document.querySelectorAll('.opt').forEach((el,j)=>{el.classList.remove('sel');el.classList.add('locked');
     if(j===q.ans)el.classList.add('correct');else if(j===sel)el.classList.add('wrong')});
   const ex=$('ex');ex.className='explain show '+(ok?'ok':'ko');
@@ -84,11 +133,15 @@ function check(){
 function next(){if(!answered)return;if(i===exam.length-1)return finish();i++;render();scrollTo({top:0,behavior:'smooth'})}
 function finish(){
   $('quiz').style.display='none';$('result').style.display='block';$('bar').style.width='100%';$('counter').textContent='Examen terminado';
-  const nota=Math.round(score/exam.length*100),pct=nota;
+  clearInterval(TM);$('sKo').style.display='';if(SIM)hist.forEach(x=>{noteFail(x.q,x.ok);setQ(x.q.q,{s:x.ok?'ok':'ko'})});
+  const fl=hist.length-score,bl=exam.length-hist.length,pct=Math.round(score/exam.length*100),nota=SIM?Math.max(0,Math.round((score-fl/3)/exam.length*100)):pct;
+  try{localStorage.removeItem('sag_state')}catch(e){}
+  const H=lsGet('sag_hist',[]);H.push({n:nota,t:exam.length,m:FMODE?'repaso':''});lsSet('sag_hist',H.slice(-20));
+  const hl=H.length>1?'<div class="muted">Tus últimas notas: '+H.slice(-6,-1).map(x=>x.n+(x.m?' (fallos)':'')).join(' · ')+'</div>':'';
   const v=nota>=90?'Excelente: nivel de plaza.':nota>=75?'Notable: afina las trampas y los conceptos parecidos.':nota>=60?'Aprobado justo: repasa los fallos.':nota>=50?'Insuficiente: refuerza los temas flojos.':'Muy insuficiente: hay que empezar por los conceptos base.';
-  $('result').innerHTML='<div class="chip">Resultado final</div><div class="ring" style="--p:'+nota+';--c:'+(nota>=60?'var(--ok)':'var(--ko)')+'"><div><span class="score">'+nota+'<small>/100</small></span></div></div><h2>'+pct+'% de aciertos</h2><span class="verdict">'+v+'</span><div class="kpis"><div class="kpi"><b>'+score+'</b><span>Aciertos</span></div><div class="kpi"><b>'+(exam.length-score)+'</b><span>Fallos</span></div><div class="kpi"><b>'+exam.length+'</b><span>Preguntas</span></div></div>'+
-   '<div class="actions" style="justify-content:center"><button class="btn primary" id="bf">Ver mis fallos</button><button class="btn secondary" id="bn">Empezar otro examen</button></div><div id="fails" class="review"></div>';
-  $('bn').onclick=start;$('bf').onclick=fails;scrollTo(0,0)}
+  $('result').innerHTML='<div class="chip">Resultado final</div><div class="ring" style="--p:'+nota+';--c:'+(nota>=60?'var(--ok)':'var(--ko)')+'"><div><span class="score">'+nota+'<small>/100</small></span></div></div><h2>'+pct+'% de aciertos</h2>'+(SIM?'<div class="muted">Nota con penalización: cada fallo resta 1/3 de acierto</div>':'')+'<span class="verdict">'+v+'</span><div class="kpis"><div class="kpi"><b>'+score+'</b><span>Aciertos</span></div><div class="kpi"><b>'+fl+'</b><span>Fallos</span></div><div class="kpi"><b>'+(SIM?bl:exam.length)+'</b><span>'+(SIM?'En blanco':'Preguntas')+'</span></div></div>'+
+   hl+'<div class="actions" style="justify-content:center"><button class="btn primary" id="bf">Ver mis fallos</button><button class="btn secondary" id="bn">Empezar otro examen</button>'+(exam.some(x=>x.m)?'<button class="btn secondary" id="bm">⭐ Ver marcadas ('+exam.filter(x=>x.m).length+')</button>':'')+(nF()?'<button class="btn secondary" id="bfx">Examen solo con fallos ('+nF()+')</button>':'')+'</div><div id="fails" class="review"></div>';
+  $('bn').onclick=()=>start();if($('bm'))$('bm').onclick=marks;if($('bfx'))$('bfx').onclick=()=>start('fails');$('bf').onclick=fails;scrollTo(0,0)}
 function fails(){
   const f=hist.filter(x=>!x.ok),box=$('fails');
   box.innerHTML=f.length?'<h3>Tus fallos ('+f.length+')</h3>'+f.map(x=>'<div class="fail"><b>'+esc(x.q.q)+'</b><div class="a">❌ Tu respuesta: '+L[x.c]+') '+esc(x.q.opts[x.c])+'</div><div class="a">✅ Correcta: '+L[x.q.ans]+') '+esc(x.q.opts[x.q.ans])+'</div><div class="muted" style="margin-top:6px">'+esc(x.q.e)+'</div></div>').join(''):'<h3>¡Sin fallos! 🎉</h3>';
@@ -101,9 +154,11 @@ try{CUSTOM=JSON.parse(localStorage.getItem('sag_custom')||'[]')}catch(e){}
 const saveC=()=>{try{localStorage.setItem('sag_custom',JSON.stringify(CUSTOM))}catch(e){}};
 function parseDoc(t){
  const out=[],bad=[];let c=null;
- const end=()=>{if(!c)return;(c.o.length===3&&c.q&&c.a>=0)?out.push([c.q,c.o,c.a,c.e||'Sin explicación.']):bad.push((c.q||'(sin enunciado)').slice(0,50));c=null};
+ const end=()=>{if(!c)return;(c.o.length===3&&c.q&&c.a>=0)?out.push([c.q,c.o,c.a,c.e||'Sin explicación.',c.g,c.df]):bad.push((c.q||'(sin enunciado)').slice(0,50));c=null};
  t.split(/\r?\n/).map(l=>l.trim()).filter(Boolean).forEach(l=>{let m;
   if(c&&(m=l.match(/^([ABC])\s*[\)\.\-–:]\s*(.+)$/i))){c.o[L.indexOf(m[1].toUpperCase())]=m[2];c.m='o';c.k=L.indexOf(m[1].toUpperCase());return}
+  if(c&&(m=l.match(/^tema\s*[:\-–]?\s*(\d{1,2})\b/i))){const n=+m[1];c.g=n<=11?0:n<=16?1:n<=23?2:n<=30?3:n<=36?4:5;return}
+  if(c&&(m=l.match(/^dificultad\s*[:\-–]?\s*(muy|d|m|f)/i))){c.df={muy:3,d:2,m:1,f:0}[m[1].toLowerCase()];return}
   if(c&&(m=l.match(/^(?:respuesta(?: correcta)?|correcta|soluci[oó]n)\s*[:\-–]?\s*\(?([ABC])\b/i))){c.a=L.indexOf(m[1].toUpperCase());c.m='a';return}
   if(c&&(m=l.match(/^(?:explicaci[oó]n|justificaci[oó]n|comentario)\s*[:\-–]?\s*(.*)$/i))){c.e=m[1];c.m='e';return}
   if(m=l.match(/^\d{1,3}\s*[\.\)\-–]\s+(.+)$/)){end();c={q:m[1],o:[],a:-1,m:'q'};return}
@@ -113,15 +168,46 @@ function parseDoc(t){
 const upMsg=(t,k)=>{$('upMsg').textContent=t;$('upMsg').className=k||''},upCount=()=>$('upCount').textContent='Preguntas propias guardadas: '+CUSTOM.length+' · Banco total: '+(BANK.length+CUSTOM.length);
 $('upBtn').onclick=()=>{$('onlyC').checked=ONLY;upCount();upMsg('');$('dlg').showModal()};
 $('upX').onclick=()=>$('dlg').close();
-$('upClr').onclick=()=>{CUSTOM=[];saveC();upCount();upMsg('Preguntas propias borradas.','ok')};
+$('upClr').onclick=()=>{CUSTOM=[];saveC();recomp();upCount();upMsg('Preguntas propias borradas.','ok')};
 $('upGo').onclick=()=>{if(hist.length&&hist.length<exam.length&&!confirm('Se abandonará el examen en curso. ¿Continuar?'))return;ONLY=$('onlyC').checked;$('dlg').close();start()};
 $('fileIn').onchange=async e=>{let add=0,bad=[],dup=0;
  for(const f of e.target.files){try{
   let txt;if(/\.txt$/i.test(f.name))txt=await f.text();else{if(!window.mammoth)throw new Error('No se pudo cargar el lector de Word (necesita conexión a internet).');txt=(await mammoth.extractRawText({arrayBuffer:await f.arrayBuffer()})).value}
   const r=parseDoc(txt);bad=bad.concat(r.bad);
   r.out.forEach(q=>{if(CUSTOM.some(x=>x[0]===q[0]))dup++;else{CUSTOM.push(q);add++}})}catch(err){upMsg('Error con '+f.name+': '+err.message,'ko');e.target.value='';return}}
- saveC();upCount();e.target.value='';
+ saveC();recomp();upCount();e.target.value='';
  upMsg(add+' preguntas añadidas'+(dup?' · '+dup+' repetidas omitidas':'')+(bad.length?' · '+bad.length+' ignoradas por formato (revisa: '+bad.slice(0,3).join(' | ')+')':'')+'.',add?'ok':'ko')};
 
-start();
+$('fxBtn').onclick=()=>{if(!nF()){alert('Aún no tienes fallos guardados. Se acumulan al fallar preguntas.');return}
+ if(hist.length&&hist.length<exam.length&&!confirm('Se abandonará el examen en curso. ¿Continuar?'))return;start('fails')};
+function resume(st){exam=st.exam;hist=st.hist;FMODE=!!st.fm;score=hist.filter(x=>x.ok).length;i=hist.length;
+ $('result').style.display='none';$('quiz').style.display='block';$('sOk').textContent='✓ '+score;$('sKo').textContent='✗ '+(i-score);SIM=!!st.sim;DL=st.dl||0;clearInterval(TM);$('sKo').style.display=SIM?'none':'';render();if(SIM){tick();TM=setInterval(tick,1000)}}
+function boot(){updF();const st=lsGet('sag_state',null);
+ if(st&&st.hist&&st.hist.length&&st.hist.length<st.exam.length){hist=[];exam=[];$('counter').textContent='Examen pendiente';
+  $('quiz').innerHTML='<div class="chip">Examen sin terminar</div><div class="q">Llevas '+st.hist.length+' de '+st.exam.length+' preguntas'+(st.fm?' (examen de fallos)':'')+'. ¿Quieres continuar?</div><div class="actions"><button class="btn primary" id="rs">Continuar examen</button><button class="btn secondary" id="nw">Empezar uno nuevo</button></div>';
+  $('rs').onclick=()=>resume(st);$('nw').onclick=()=>start()}else start()}
+function marks(){const f=exam.filter(x=>x.m);$('fails').innerHTML='<h3>⭐ Marcadas ('+f.length+')</h3>'+f.map(q=>{const r=hist.find(x=>x.q.q===q.q);return'<div class="fail"><b>'+esc(q.q)+'</b><div class="a">'+(r?(r.ok?'✅ Acertaste':'❌ Fallaste')+' · tu respuesta: '+L[r.c]+')':'⚪ En blanco')+'</div><div class="a">✔ Correcta: '+L[q.ans]+') '+esc(q.opts[q.ans])+'</div><div class="muted">'+esc(q.e)+'</div></div>'}).join('');$('fails').scrollIntoView({behavior:'smooth'})}
+function showStats(){const rows=G.map((n,k)=>{const s=STATS[k]||[0,0];return{n,t:s[1],p:s[1]?Math.round(s[0]/s[1]*100):null}});let A=0,T=0;Object.values(STATS).forEach(s=>{A+=s[0];T+=s[1]});
+ const rs=rows.filter(r=>r.t>=3).sort((a,b)=>a.p-b.p),H=lsGet('sag_hist',[]).slice(-10);
+ $('stBody').innerHTML=T?'<div class="kpis"><div class="kpi"><b>'+Math.round(A/T*100)+'%</b><span>aciertos</span></div><div class="kpi"><b>'+T+'</b><span>preguntas realizadas</span></div><div class="kpi"><b>'+(T-A)+'</b><span>fallos</span></div></div>'+(rs.length?'<p>📉 Tema más flojo: <b>'+rs[0].n+'</b> ('+rs[0].p+'%)<br>📈 Tema más fuerte: <b>'+rs[rs.length-1].n+'</b> ('+rs[rs.length-1].p+'%)</p>':'<p class="muted">Faltan datos por tema (mínimo 3 preguntas).</p>')+rows.map(r=>'<div class="rowb"><span>'+r.n+'</span><div class="tr"><i style="width:'+(r.p||0)+'%"></i></div><b>'+(r.p==null?'–':r.p+'%')+'</b></div>').join('')+'<h3>Evolución de las últimas sesiones</h3><div class="evo">'+(H.length?H.map(x=>'<div><i style="height:'+Math.max(4,x.n)+'%"></i><span>'+x.n+'</span></div>').join(''):'<span class="muted">Sin sesiones aún</span>')+'</div>':'<p class="muted">Todavía no hay datos. Haz un examen y vuelve.</p>';
+ $('stDlg').showModal()}
+$('stBtn').onclick=showStats;$('stX').onclick=()=>$('stDlg').close();$('stR').onclick=()=>{if(confirm('¿Borrar estadísticas e historial?')){STATS={};lsSet('sag_stats',{});lsSet('sag_hist',[]);showStats()}};
+$('cfgBtn').onclick=()=>$('cfgDlg').showModal();$('cfgX').onclick=()=>$('cfgDlg').close();
+const goCfg=c=>{if(hist.length&&hist.length<exam.length&&!confirm('Se abandonará el examen en curso. ¿Continuar?'))return;$('cfgDlg').close();start('',c)};
+$('cfgGo').onclick=()=>goCfg({t:$('cT').value,d:$('cD').value,only:ONLY});$('simGo').onclick=()=>goCfg({sim:true});
+
+let LF='all',LQ='',LCUR=[];
+const qOk=(x,k)=>{const r=QS[x[0]]||{};return k==='all'||(k==='mk'?!!r.m:(r.s||'new')===k)};
+function renderList(){const A=BANK.concat(CUSTOM);LCUR=A.filter(x=>qOk(x,LF)&&(!LQ||x[0].toLowerCase().includes(LQ)));
+ $('lsList').innerHTML=LCUR.length?LCUR.map(x=>{const r=QS[x[0]]||{};return'<details class="li"><summary><span>'+(r.s==='ok'?'✅':r.s==='ko'?'❌':'⚪')+(r.m?'⭐':'')+'</span><span>'+esc(x[0])+'</span></summary><div class="lb"><div class="muted">'+G[gOf(x)]+' · '+DN[dOf(x)]+'</div>'+x[1].map((o,j)=>'<div class="'+(j===x[2]?'ca':'')+'">'+L[j]+') '+esc(o)+(j===x[2]?' ✔':'')+'</div>').join('')+'<div class="muted" style="margin-top:6px">'+esc(x[3])+'</div><button class="btn secondary" type="button" data-mk="'+A.indexOf(x)+'">'+(r.m?'Quitar marca ⭐':'☆ Marcar para revisar')+'</button></div></details>'}).join(''):'<p class="muted">No hay preguntas con este filtro.</p>';
+ $('lsGo').textContent='Examen con estas ('+Math.min(LCUR.length,TOTAL)+')';$('lsGo').disabled=!LCUR.length}
+function showList(){const A=BANK.concat(CUSTOM),ch=[['all','Todas'],['ok','✅ Bien'],['ko','❌ Mal'],['new','⚪ Sin hacer'],['mk','⭐ Marcadas']];
+ $('lsBody').innerHTML='<div class="chips">'+ch.map(([k,n])=>'<button type="button" class="chip2'+(k===LF?' on':'')+'" data-f="'+k+'">'+n+' ('+A.filter(x=>qOk(x,k)).length+')</button>').join('')+'</div><input id="lsQ" placeholder="Buscar en las preguntas…" value="'+esc(LQ)+'"><div id="lsList"></div>';renderList()}
+$('lsBody').onclick=e=>{const f=e.target.closest('[data-f]'),m=e.target.closest('[data-mk]');
+ if(f){LF=f.dataset.f;showList()}else if(m){const x=BANK.concat(CUSTOM)[+m.dataset.mk];setQ(x[0],{m:!(QS[x[0]]||{}).m});showList()}};
+$('lsBody').oninput=e=>{if(e.target.id==='lsQ'){LQ=e.target.value.toLowerCase();renderList()}};
+$('lsBtn').onclick=()=>{showList();$('lsDlg').showModal()};$('lsX').onclick=()=>$('lsDlg').close();
+$('lsGo').onclick=()=>{if(hist.length&&hist.length<exam.length&&!confirm('Se abandonará el examen en curso. ¿Continuar?'))return;$('lsDlg').close();start('',{pool:LCUR})};
+recomp();
+boot();
 </script></body></html>
